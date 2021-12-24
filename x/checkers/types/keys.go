@@ -1,5 +1,7 @@
 package types
 
+import "time"
+
 const (
 	// ModuleName defines the module name
 	ModuleName = "checkers"
@@ -24,3 +26,63 @@ const (
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
+
+const (
+	NextGameKey = "NextGame-value-"
+)
+
+const (
+	StoredGameKey = "StoredGame-value-"
+)
+
+const (
+	StoredGameEventKey     = "NewGameCreated"
+	StoredGameEventCreator = "Creator"
+	StoredGameEventIndex   = "Index"
+	StoredGameEventRed     = "Red"
+	StoredGameEventBlack   = "Black"
+)
+
+const (
+	PlayMoveEventKey       = "MovePlayed"
+	PlayMoveEventCreator   = "Creator"
+	PlayMoveEventIdValue   = "IdValue"
+	PlayMoveEventCapturedX = "CapturedX"
+	PlayMoveEventCapturedY = "CapturedY"
+	PlayMoveEventWinner    = "Winner"
+)
+
+const (
+	RejectGameEventKey     = "GameRejected"
+	RejectGameEventCreator = "Creator"
+	RejectGameEventIdValue = "IdValue"
+)
+
+const (
+	NoFifoIdKey = "-1"
+)
+
+const (
+	MaxTurnDurationInSeconds = time.Duration(24 * 3_600 * 1000_000_000)
+	DeadlineLayout           = "2006-01-02 15:04:05.999999999 +0000 UTC"
+)
+
+const (
+	ForfeitGameEventKey     = "GameForfeited"
+	ForfeitGameEventIdValue = "IdValue"
+	ForfeitGameEventWinner  = "Winner"
+)
+
+const (
+	StoredGameEventWager = "Wager"
+)
+
+const (
+	CreateGameGas = 10
+	PlayMoveGas   = 10
+	RejectGameGas = 0
+)
+
+const (
+	StoredGameEventToken = "Token"
+)

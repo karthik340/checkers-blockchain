@@ -1,8 +1,8 @@
 package types
 
 import (
-// this line is used by starport scaffolding # genesis/types/import
-// this line is used by starport scaffolding # ibc/genesistype/import
+	"fmt"
+	// this line is used by starport scaffolding # ibc/genesistype/import
 )
 
 // DefaultIndex is the default capability global index
@@ -13,6 +13,13 @@ func DefaultGenesis() *GenesisState {
 	return &GenesisState{
 		// this line is used by starport scaffolding # ibc/genesistype/default
 		// this line is used by starport scaffolding # genesis/types/default
+		StoredGameList: []*StoredGame{},
+		NextGame: &NextGame{
+			Creator:  "",
+			IdValue:  uint64(0),
+			FifoHead: NoFifoIdKey,
+			FifoTail: NoFifoIdKey,
+		},
 	}
 }
 
@@ -22,6 +29,15 @@ func (gs GenesisState) Validate() error {
 	// this line is used by starport scaffolding # ibc/genesistype/validate
 
 	// this line is used by starport scaffolding # genesis/types/validate
+	// Check for duplicated index in storedGame
+	storedGameIndexMap := make(map[string]bool)
+
+	for _, elem := range gs.StoredGameList {
+		if _, ok := storedGameIndexMap[elem.Index]; ok {
+			return fmt.Errorf("duplicated index for storedGame")
+		}
+		storedGameIndexMap[elem.Index] = true
+	}
 
 	return nil
 }

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package alice.checkers.checkers;
+
+option go_package = "github.com/alice/checkers/x/checkers/types";
+
+import "gogoproto/gogo.proto";
+
+message NextGame {
+  string creator = 1;
+  uint64 idValue = 2;
+  string fifoHead = 3;
+  string fifoTail = 4;
+}
